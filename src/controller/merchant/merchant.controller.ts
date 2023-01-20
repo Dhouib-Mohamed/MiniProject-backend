@@ -17,7 +17,7 @@ export class MerchantController {
 
   constructor(private readonly MerchantService: MerchantService, private readonly UserService: UserService, private readonly ProductService:ProductService, private readonly OrderService:OrderService) {}
 
-  @Get("/signin")
+  @Post("/signin")
   async SignIn(@Res() response, @Body() SignDto: SignDto,@Session() session: Record<string, any>) {
     try {
       const result = await this.UserService.signIn(SignDto, this.MerchantService);

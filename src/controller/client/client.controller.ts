@@ -11,7 +11,7 @@ import { UserService } from "../../service/user/user.service";
 @Controller('client')
 export class ClientController {
   constructor(private readonly ClientService: ClientService, private readonly UserService : UserService,private readonly ProductService:ProductService,private readonly OrderService:OrderService) { }
-  @Get("/signin")
+  @Post("/signin")
   async SignIn(@Res() response,@Body() SignDto:SignDto,@Session() session) {
     try {
       const result = await this.UserService.signIn(SignDto,this.ClientService);
