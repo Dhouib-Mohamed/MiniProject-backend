@@ -52,7 +52,15 @@ export class MerchantController {
       return response.json(e.response)
     }
   }
-
+  @Delete("/signout/:email")
+  async SignOut(@Res() response,@Param() email:string,@Session() session) {
+    try {
+      session.Merchant.splice(session.Merchant.findIndex((e)=>e.email===email))
+      return response.json({message:"User has signed out successfully"});
+    } catch (e) {
+      return response.json(e.response)
+    }
+  }
   @Put('/update/:id')
   async updateMerchant(@Res() response, @Param('id') MerchantId: string, @Body() updateMerchantDto:UpdateMerchantDto) {
     try {

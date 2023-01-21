@@ -7,6 +7,7 @@ import { SignDto } from "../../dto/signDto";
 import { OrderService } from "../../service/order/order.service";
 import { Order } from "../../schema/order.schema";
 import { UserService } from "../../service/user/user.service";
+import { Prop } from "@nestjs/mongoose";
 
 @Controller('client')
 export class ClientController {
@@ -17,6 +18,15 @@ export class ClientController {
       const result = await this.UserService.signIn(SignDto,this.ClientService);
       session.Client=session.Client?[...session.Client,result.existingUser]:[result.existingUser];
       return response.json(result);
+    } catch (e) {
+      return response.json(e.response)
+    }
+  }
+  @Delete("/signout/:email")
+  async SignOut(@Res() response,@Param() email:string,@Session() session) {
+    try {
+      session.Client.splice(session.Client.findIndex((e)=>e.email===email))
+      return response.json({message:"User has signed out successfully"});
     } catch (e) {
       return response.json(e.response)
     }

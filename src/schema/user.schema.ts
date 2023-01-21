@@ -12,16 +12,16 @@ export class User implements IUser {
   @Exclude()
   password: string;
   @Prop()
-  phoneNumber: string;
+  phone: string;
   @Prop()
   image: string;
 
 
-  constructor(name: string, email: string, password: string, phoneNumber: string, image: string) {
+  constructor(name: string, email: string, password: string, phone: string, image: string) {
     this.name = name;
     this.email = email;
     this.password = password;
-    this.phoneNumber = phoneNumber;
+    this.phone = phone;
     this.image = image;
   }
 }
