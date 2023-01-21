@@ -33,8 +33,8 @@ export class MerchantController {
   async getUser(@Res() response,@Param() id:string,@Session() session: Record<string, any>) {
     console.log(session);
     try {
-      const result = await this.UserService.getUser(id,session, "Merchant");
-      return response.json(result);
+      const merchant = await this.MerchantService.getMerchantById(id);
+      return response.json({merchant});
     } catch (e) {
       return response.json(e.response)
     }

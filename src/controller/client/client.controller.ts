@@ -17,26 +17,21 @@ export class ClientController {
     try {
       const result = await this.UserService.signIn(SignDto,this.ClientService);
       session.Client=session.Client?[...session.Client,result.existingUser]:[result.existingUser];
+      console.log(session);
       return response.json(result);
-    } catch (e) {
-      return response.json(e.response)
-    }
-  }
-  @Delete("/signout/:email")
-  async SignOut(@Res() response,@Param() email:string,@Session() session) {
-    try {
-      session.Client.splice(session.Client.findIndex((e)=>e.email===email))
-      return response.json({message:"User has signed out successfully"});
     } catch (e) {
       return response.json(e.response)
     }
   }
   @Get("/user/:id")
-  async getUser(@Res() response,@Param() id:string,@Session() Session) {
+  async getUser(@Res() response,@Param("id") id:string,@Session() Session) {
     try {
-      const result = await this.UserService.getUser(id,Session, "Client");
-      return response.json(result);
+      console.log("jhi");
+      const client = await this.ClientService.getClientById(id);
+      console.log(client);
+      return response.json({ client });
     } catch (e) {
+      console.log(e);
       return response.json(e.response)
     }
   }
