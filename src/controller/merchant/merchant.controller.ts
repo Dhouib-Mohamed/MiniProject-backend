@@ -29,11 +29,11 @@ export class MerchantController {
       return response.json(e.response)
     }
   }
-  @Get("/user/:email")
-  async getUser(@Res() response,@Param() email:string,@Session() session: Record<string, any>) {
+  @Get("/user/:id")
+  async getUser(@Res() response,@Param() id:string,@Session() session: Record<string, any>) {
     console.log(session);
     try {
-      const result = await this.UserService.getUser(email,session, "Merchant");
+      const result = await this.UserService.getUser(id,session, "Merchant");
       return response.json(result);
     } catch (e) {
       return response.json(e.response)

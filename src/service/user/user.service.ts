@@ -21,20 +21,22 @@ export class UserService {
         error: 'Bad Request',}
     }
   }
-  async getUser(email,session,userType) {
+  async getUser(id,session,userType) {
     try {
+      console.log(session);
+      console.log(id);
       let user;
       if (userType==="Merchant") {
         if (!session.Merchant) {
           console.log(1);
           return { message: 'Please Sign In',};
         }
-        user =session.Merchant.find((e)=>e.email===email.email)
+        user =session.Merchant.find((e)=>e._id===id.id)
       } else {
         if (!session.Client) {
           return { message: 'Please Sign In',};
         }
-        user =session.Client.find((e)=>e.email===email.email)
+        user =session.Client.find((e)=> e._id === id.id)
       }
       console.log(user);
       if (!user) {

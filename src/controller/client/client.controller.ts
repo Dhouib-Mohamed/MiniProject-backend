@@ -31,10 +31,10 @@ export class ClientController {
       return response.json(e.response)
     }
   }
-  @Get("/user/:email")
-  async getUser(@Res() response,@Param() email:string,@Session() Session) {
+  @Get("/user/:id")
+  async getUser(@Res() response,@Param() id:string,@Session() Session) {
     try {
-      const result = await this.UserService.getUser(email,Session, "Client");
+      const result = await this.UserService.getUser(id,Session, "Client");
       return response.json(result);
     } catch (e) {
       return response.json(e.response)
