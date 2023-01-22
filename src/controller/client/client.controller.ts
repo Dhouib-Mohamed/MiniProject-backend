@@ -117,7 +117,8 @@ export class ClientController {
     try {
       const client = await this.ClientService.getClientById(clientId);
       const product = await this.ProductService.getProductById(productId);
-      const order = await this.OrderService.createOrder({product,client,verified:null});
+      const date = new Date()
+      const order = await this.OrderService.createOrder({product,client,verified:null,date});
       return response.status(HttpStatus.OK).json({message:`Order have been created successfully`,order})
     }
     catch (err) {

@@ -5,4 +5,5 @@ export class CreateProductDto {
   readonly description: string;
   readonly image: string;
   readonly price: number;
+  readonly material :string;
 }

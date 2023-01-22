@@ -5,6 +5,6 @@ export interface IOrder{
   readonly product: Product;
   readonly client: Client;
   readonly verified: boolean;
-  readonly date: string;
+  readonly date: Date;
 
 }

@@ -15,9 +15,9 @@ export class Order implements IOrder {
   @Prop()
   verified: boolean;
   @Prop()
-  date: string;
+  date: Date;
 
-  constructor(product: Product, client: Client,date:string) {
+  constructor(product: Product, client: Client,date:Date) {
     this.product = product;
     this.client = client;
     this.verified = null;
