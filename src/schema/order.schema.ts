@@ -14,11 +14,14 @@ export class Order implements IOrder {
   client: Client;
   @Prop()
   verified: boolean;
+  @Prop()
+  date: string;
 
-  constructor(product: Product, client: Client) {
+  constructor(product: Product, client: Client,date:string) {
     this.product = product;
     this.client = client;
     this.verified = null;
+    this.date = date;
   }
 }
 export const OrderSchema = SchemaFactory.createForClass(Order);
